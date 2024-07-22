@@ -1,10 +1,11 @@
-// src/services/employee.service.ts
-
 import EmployeeDatasource from "@/data/datasources/employee.datasource";
 import { NewEmployeeModel } from "@/utils/types";
 import EmployeeDatasourceContract from "../contracts/employeeDatasource.contract";
 import { EmployeeListModel, EmployeeModel } from "../models/employee.model";
-import { GetEmployeeByIdParams } from "../params/employee.param";
+import {
+  GetEmployeeByIdParams,
+  UpdateEmployeeParams,
+} from "../params/employee.param";
 
 export default class EmployeeService {
   private static _instance: EmployeeService;
@@ -36,12 +37,13 @@ export default class EmployeeService {
   }
 
   public updateEmployeeById(
-    params: unknown
+    params: UpdateEmployeeParams & { id: number }
   ): Promise<EmployeeModel | undefined> {
     return this.datasource.updateEmployeeById(params);
   }
+
   public deleteEmployeeById(
-    params: unknown
+    params: GetEmployeeByIdParams
   ): Promise<EmployeeModel | undefined> {
     return this.datasource.deleteEmployeeById(params);
   }
